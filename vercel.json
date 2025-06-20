@@ -1,0 +1,11 @@
+{
+  "functions": {
+    "src/app/api/inngest/route.ts": {
+      "maxDuration": 30
+    },
+    "src/app/api/webhooks/clerk/route.ts": {
+      "maxDuration": 30
+    }
+  },
+  "crons": []
+}
