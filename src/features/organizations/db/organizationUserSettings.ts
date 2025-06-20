@@ -6,12 +6,21 @@ import { and, eq } from "drizzle-orm"
 export async function insertOrganizationUserSettings(
   settings: typeof OrganizationUserSettingsTable.$inferInsert
 ) {
-  await db
-    .insert(OrganizationUserSettingsTable)
-    .values(settings)
-    .onConflictDoNothing()
+  console.log("🏢 Inserting organization user settings:", settings)
+  try {
+    const result = await db
+      .insert(OrganizationUserSettingsTable)
+      .values(settings)
+      .onConflictDoNothing()
+      .returning()
 
-  revalidateOrganizationUserSettingsCache(settings)
+    console.log("✅ Insert organization settings result:", result)
+    revalidateOrganizationUserSettingsCache(settings)
+    return result
+  } catch (error) {
+    console.error("❌ Error inserting organization user settings:", error)
+    throw error
+  }
 }
 
 export async function updateOrganizationUserSettings(

@@ -65,6 +65,56 @@ export async function POST(req: Request) {
           },
         } as any) // eslint-disable-line
         console.log("✅ Sent user.deleted to Inngest")
+      } else if (evt.type === "organization.created") {
+        await inngest.send({
+          name: "clerk/organization.created",
+          data: {
+            data: evt.data,
+            raw: payload,
+            headers: Object.fromEntries(req.headers.entries()),
+          },
+        } as any) // eslint-disable-line
+        console.log("✅ Sent organization.created to Inngest")
+      } else if (evt.type === "organization.updated") {
+        await inngest.send({
+          name: "clerk/organization.updated",
+          data: {
+            data: evt.data,
+            raw: payload,
+            headers: Object.fromEntries(req.headers.entries()),
+          },
+        } as any) // eslint-disable-line
+        console.log("✅ Sent organization.updated to Inngest")
+      } else if (evt.type === "organization.deleted") {
+        await inngest.send({
+          name: "clerk/organization.deleted",
+          data: {
+            data: evt.data,
+            raw: payload,
+            headers: Object.fromEntries(req.headers.entries()),
+          },
+        } as any) // eslint-disable-line
+        console.log("✅ Sent organization.deleted to Inngest")
+      } else if (evt.type === "organizationMembership.created") {
+        await inngest.send({
+          name: "clerk/organizationMembership.created",
+          data: {
+            data: evt.data,
+            raw: payload,
+            headers: Object.fromEntries(req.headers.entries()),
+          },
+        } as any) // eslint-disable-line
+        console.log("✅ Sent organizationMembership.created to Inngest")
+      } else if (evt.type === "organizationMembership.deleted") {
+        await inngest.send({
+          name: "clerk/organizationMembership.deleted",
+          data: {
+            data: evt.data,
+            raw: payload,
+            headers: Object.fromEntries(req.headers.entries()),
+          },
+        } as any) // eslint-disable-line
+        console.log("✅ Sent organizationMembership.deleted to Inngest")
       } else {
         console.log(`⚠️ Unhandled event type: ${evt.type}`)
       }

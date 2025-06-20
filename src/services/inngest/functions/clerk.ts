@@ -64,7 +64,19 @@ export const clerkCreateUser = inngest.createFunction(
     })
 
     await step.run("create-user-notification-settings", async () => {
-      await insertUserNotificationSettings({ userId })
+      console.log("🔔 Creating user notification settings for userId:", userId)
+      try {
+        await insertUserNotificationSettings({ 
+          userId,
+          newJobEmailNotifications: false,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        })
+        console.log("✅ Successfully created user notification settings")
+      } catch (error) {
+        console.error("❌ Error creating user notification settings:", error)
+        throw error
+      }
     })
   }
 )
@@ -244,13 +256,26 @@ export const clerkCreateOrgMembership = inngest.createFunction(
     })
 
     await step.run("create-organization-user-settings", async () => {
+      console.log("🏢 Creating organization user settings")
+      
       const userId = event.data.data.public_user_data.user_id
       const orgId = event.data.data.organization.id
+      
+      console.log("👤 UserId:", userId)
+      console.log("🏢 OrgId:", orgId)
 
-      await insertOrganizationUserSettings({
-        userId,
-        organizationId: orgId,
-      })
+      try {
+        await insertOrganizationUserSettings({
+          userId,
+          organizationId: orgId,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        })
+        console.log("✅ Successfully created organization user settings")
+      } catch (error) {
+        console.error("❌ Error creating organization user settings:", error)
+        throw error
+      }
     })
   }
 )
