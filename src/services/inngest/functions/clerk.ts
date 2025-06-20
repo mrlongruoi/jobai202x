@@ -32,7 +32,10 @@ export const clerkCreateUser = inngest.createFunction(
   async ({ event, step }) => {
     await step.run("verify-webhook", async () => {
       try {
-        verifyWebhook(event.data)
+        verifyWebhook({
+          raw: event.data.raw,
+          headers: event.data.headers,
+        })
       } catch {
         throw new NonRetriableError("Invalid webhook")
       }
@@ -72,7 +75,10 @@ export const clerkUpdateUser = inngest.createFunction(
   async ({ event, step }) => {
     await step.run("verify-webhook", async () => {
       try {
-        verifyWebhook(event.data)
+        verifyWebhook({
+          raw: event.data.raw,
+          headers: event.data.headers,
+        })
       } catch {
         throw new NonRetriableError("Invalid webhook")
       }
@@ -104,7 +110,10 @@ export const clerkDeleteUser = inngest.createFunction(
   async ({ event, step }) => {
     await step.run("verify-webhook", async () => {
       try {
-        verifyWebhook(event.data)
+        verifyWebhook({
+          raw: event.data.raw,
+          headers: event.data.headers,
+        })
       } catch {
         throw new NonRetriableError("Invalid webhook")
       }
@@ -132,7 +141,10 @@ export const clerkCreateOrganization = inngest.createFunction(
   async ({ event, step }) => {
     await step.run("verify-webhook", async () => {
       try {
-        verifyWebhook(event.data)
+        verifyWebhook({
+          raw: event.data.raw,
+          headers: event.data.headers,
+        })
       } catch {
         throw new NonRetriableError("Invalid webhook")
       }
@@ -161,7 +173,10 @@ export const clerkUpdateOrganization = inngest.createFunction(
   async ({ event, step }) => {
     await step.run("verify-webhook", async () => {
       try {
-        verifyWebhook(event.data)
+        verifyWebhook({
+          raw: event.data.raw,
+          headers: event.data.headers,
+        })
       } catch {
         throw new NonRetriableError("Invalid webhook")
       }
@@ -188,7 +203,10 @@ export const clerkDeleteOrganization = inngest.createFunction(
   async ({ event, step }) => {
     await step.run("verify-webhook", async () => {
       try {
-        verifyWebhook(event.data)
+        verifyWebhook({
+          raw: event.data.raw,
+          headers: event.data.headers,
+        })
       } catch {
         throw new NonRetriableError("Invalid webhook")
       }
@@ -216,7 +234,10 @@ export const clerkCreateOrgMembership = inngest.createFunction(
   async ({ event, step }) => {
     await step.run("verify-webhook", async () => {
       try {
-        verifyWebhook(event.data)
+        verifyWebhook({
+          raw: event.data.raw,
+          headers: event.data.headers,
+        })
       } catch {
         throw new NonRetriableError("Invalid webhook")
       }
@@ -245,7 +266,10 @@ export const clerkDeleteOrgMembership = inngest.createFunction(
   async ({ event, step }) => {
     await step.run("verify-webhook", async () => {
       try {
-        verifyWebhook(event.data)
+        verifyWebhook({
+          raw: event.data.raw,
+          headers: event.data.headers,
+        })
       } catch {
         throw new NonRetriableError("Invalid webhook")
       }
